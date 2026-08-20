@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.langflow.org/extension/v1.json",
+  "id": "lfx-wavespeed",
+  "version": "0.1.0",
+  "name": "WaveSpeed AI",
+  "description": "WaveSpeed AI components for Langflow: fast text-to-image and text-to-video generation, plus a generic runner for any model in the WaveSpeed catalog.",
+  "lfx": {
+    "compat": ["1"]
+  },
+  "bundles": [
+    {
+      "name": "wavespeed",
+      "path": "components/wavespeed",
+      "display_name": "WaveSpeed AI",
+      "icon": "Sparkles"
+    }
+  ]
+}

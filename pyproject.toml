@@ -1,0 +1,91 @@
+# hatchling is pinned below 1.28: newer releases emit Metadata-Version 2.5,
+# which the twine bundled in pypa/gh-action-pypi-publish rejects with
+# InvalidDistribution.
+[build-system]
+requires = ["hatchling>=1.27,<1.28"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lfx-wavespeed"
+version = "0.1.0"
+description = "WaveSpeed AI image and video generation components as a Langflow Extension Bundle."
+readme = "README.md"
+requires-python = ">=3.10,<3.15"
+license = { text = "MIT" }
+authors = [{ name = "WaveSpeedAI", email = "support@wavespeed.ai" }]
+keywords = [
+    "langflow",
+    "lfx",
+    "extension",
+    "bundle",
+    "wavespeed",
+    "image-generation",
+    "video-generation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# lfx is the BUNDLE_API surface; wavespeed is the official SDK (attribution
+# headers, no-retry-on-submit policy, terminal-status handling); requests backs
+# the live model-catalog dropdown.
+dependencies = [
+    "lfx>=1.11.4,<2.0.0",
+    "wavespeed>=1.0.13",
+    "requests>=2.32.0",
+]
+
+[project.urls]
+Homepage = "https://wavespeed.ai"
+Repository = "https://github.com/WaveSpeedAI/lfx-wavespeed"
+Issues = "https://github.com/WaveSpeedAI/lfx-wavespeed/issues"
+Documentation = "https://docs.langflow.org/extensions"
+
+# Manifest-shipping distributions are discovered via the ``langflow.extensions``
+# entry-point. The value is the dotted path to the package containing
+# ``extension.json``; the loader walks importlib.metadata.files() from there,
+# and falls back to this entry-point for editable installs.
+[project.entry-points."langflow.extensions"]
+lfx-wavespeed = "lfx_wavespeed"
+
+[dependency-groups]
+test = ["pytest>=8.0.0"]
+lint = ["ruff>=0.9.0"]
+
+[tool.hatch.build.targets.wheel]
+# extension.json + components live inside the lfx_wavespeed package so
+# importlib.metadata.files(dist) finds them and the loader resolves
+# bundles[].path relative to the manifest's directory.
+packages = ["src/lfx_wavespeed"]
+include = [
+    "src/lfx_wavespeed/extension.json",
+    "src/lfx_wavespeed/components/**/*.py",
+]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/lfx_wavespeed", "tests", "README.md", "LICENSE", "pyproject.toml"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --strict-config"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "W", "ARG", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# `inputs` / `outputs` are the Langflow Component contract: class-level lists
+# the framework reads. Langflow's own components are written the same way.
+"src/lfx_wavespeed/components/**" = ["RUF012"]
+"tests/*" = ["ARG"]
