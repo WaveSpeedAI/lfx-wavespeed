@@ -178,9 +178,9 @@ def test_run_model_requires_model_id():
 # --------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize("status", ["failed", "cancelled", "timeout"])
+@pytest.mark.parametrize("status", ["failed", "cancelled", "timeout", "deleted"])
 def test_terminal_status_is_surfaced_with_task_id(fake_client, status):
-    """The SDK raises on failed/cancelled/timeout; keep its message verbatim."""
+    """The SDK raises on every failure terminal status; keep its message verbatim."""
     sdk_error = RuntimeError(f"Prediction {status} (task_id: abc123): out of capacity")
     fake_client["client"] = FakeClient(error=sdk_error)
 

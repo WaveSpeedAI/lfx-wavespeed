@@ -4,7 +4,7 @@ Every component here talks to the platform through the official ``wavespeed``
 Python SDK rather than raw HTTP: the SDK already carries the channel
 attribution headers, the correct retry policy (a submission POST is never
 retried, so a failed poll can never double-bill a task) and terminal-status
-handling for ``failed`` / ``cancelled`` / ``timeout``.
+handling for ``failed`` / ``cancelled`` / ``timeout`` / ``deleted``.
 """
 
 from __future__ import annotations
@@ -148,7 +148,7 @@ class WaveSpeedBaseComponent(Component):
         unknown or null fields rather than ignoring them.
 
         Raises:
-            ValueError: On a missing key, a failed/cancelled/timed-out task, or
+            ValueError: On a missing key, a failed/cancelled/timed-out/deleted task, or
                 a task that completed with no outputs.
         """
         model_id = (model or "").strip()
