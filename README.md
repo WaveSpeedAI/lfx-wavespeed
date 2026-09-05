@@ -20,7 +20,7 @@ Restart Langflow. A **WaveSpeed AI** bundle appears in the component palette.
 | Component | What it does |
 | --- | --- |
 | **WaveSpeed AI Image Generation** | Text-to-image. Defaults to `bytedance/seedream-v5.0-pro`; the model dropdown loads the live catalog. Exposes prompt, aspect ratio and resolution. |
-| **WaveSpeed AI Video Generation** | Text-to-video. Defaults to `bytedance/seedance-2.5/text-to-video`. Exposes prompt and duration. |
+| **WaveSpeed AI Video Generation** | Text-to-video. Defaults to `wavespeed-ai/minimax-h3/text-to-video` (cheap open-weights starting point; pick `bytedance/seedance-2.5/text-to-video` for the highest quality). Exposes prompt and duration. |
 | **WaveSpeed AI Run Model** | Runs any model id from the catalog with a raw JSON input payload. |
 
 All three take a `WaveSpeed API Key` (get one at

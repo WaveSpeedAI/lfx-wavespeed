@@ -257,7 +257,7 @@ def test_opaque_output_is_json_encoded(fake_client):
 CATALOG = [
     {"model_id": "bytedance/seedream-v5.0-pro", "type": "text-to-image"},
     {"model_id": "wavespeed-ai/flux-dev", "type": "text-to-image"},
-    {"model_id": "bytedance/seedance-2.5/text-to-video", "type": "text-to-video"},
+    {"model_id": "wavespeed-ai/minimax-h3/text-to-video", "type": "text-to-video"},
     {"model_id": "some/llm", "type": "text-to-text"},
     {"not_a_model": True},
 ]
@@ -271,7 +271,7 @@ def test_get_models_filters_by_type(monkeypatch):
         "bytedance/seedream-v5.0-pro",
         "wavespeed-ai/flux-dev",
     ]
-    assert make_video().get_models() == ["bytedance/seedance-2.5/text-to-video"]
+    assert make_video().get_models() == ["wavespeed-ai/minimax-h3/text-to-video"]
 
 
 def test_get_models_falls_back_on_network_error(monkeypatch):

@@ -9,7 +9,7 @@ from lfx.schema.data import Data
 
 from lfx_wavespeed._base import DEFAULT_POLL_INTERVAL, DEFAULT_TIMEOUT, WaveSpeedBaseComponent
 
-DEFAULT_VIDEO_MODEL = "bytedance/seedance-2.5/text-to-video"
+DEFAULT_VIDEO_MODEL = "wavespeed-ai/minimax-h3/text-to-video"
 
 #: Shown when the live catalog is unreachable (no key yet, offline, API down).
 FALLBACK_VIDEO_MODELS = (DEFAULT_VIDEO_MODEL,)
