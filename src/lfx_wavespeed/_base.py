@@ -27,7 +27,7 @@ CLIENT_NAME = "langflow"
 DEFAULT_POLL_INTERVAL = 2.0
 
 #: How long to wait on the (fast, cacheable) model-catalog request.
-CATALOG_TIMEOUT = 10.0
+CATALOG_TIMEOUT = 30.0
 
 
 # A submit that ends without a confirmed 2xx (5xx, read timeout, connection
