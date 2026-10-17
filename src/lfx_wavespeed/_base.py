@@ -10,6 +10,7 @@ handling for ``failed`` / ``cancelled`` / ``timeout`` / ``deleted``.
 from __future__ import annotations
 
 import json
+import re
 from typing import Any, ClassVar
 
 import requests
@@ -30,6 +31,19 @@ DEFAULT_POLL_INTERVAL = 2.0
 
 #: How long to wait on the (fast, cacheable) model-catalog request.
 CATALOG_TIMEOUT = 10.0
+
+
+# A submit that ends without a confirmed 2xx (5xx, read timeout, connection
+# reset) may still have created the task; the SDK never re-POSTs, so tell the
+# agent not to do it either.
+_AMBIGUOUS_SUBMIT = re.compile(r"did not return a response|Failed to submit prediction: HTTP 5\d\d")
+_AMBIGUOUS_SUBMIT_HINT = " The task may already exist: do not retry blindly; check your recent predictions first."
+
+
+def _with_submit_hint(message: str) -> str:
+    if _AMBIGUOUS_SUBMIT.search(message):
+        return message + _AMBIGUOUS_SUBMIT_HINT
+    return message
 
 
 def build_client(api_key: str, *, max_retries: int = 0) -> Any:
@@ -172,8 +186,9 @@ class WaveSpeedBaseComponent(Component):
             # SDK messages already carry "(task_id: ...)" plus the platform
             # error text; keep them verbatim so a billed failure stays
             # traceable from the Langflow error panel.
-            self.status = f"Error: {e}"
-            msg = f"WaveSpeed model {model_id!r} failed: {e}"
+            detail = _with_submit_hint(str(e))
+            self.status = f"Error: {detail}"
+            msg = f"WaveSpeed model {model_id!r} failed: {detail}"
             raise ValueError(msg) from e
 
         outputs = result.get("outputs") or []

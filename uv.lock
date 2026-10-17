@@ -1285,7 +1285,7 @@ test = [
 requires-dist = [
     { name = "lfx", specifier = ">=1.11.4,<2.0.0" },
     { name = "requests", specifier = ">=2.32.0" },
-    { name = "wavespeed", specifier = ">=1.0.13" },
+    { name = "wavespeed", specifier = ">=2.0.4" },
 ]
 
 [package.metadata.requires-dev]
@@ -3261,15 +3261,15 @@ wheels = [
 
 [[package]]
 name = "wavespeed"
-version = "2.0.2"
+version = "2.0.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "requests" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/3e/e6/4dc1b6ac3d56b3d13097f674d52a1a12707deaeb517d3ed2f444dccce893/wavespeed-2.0.2.tar.gz", hash = "sha256:536b9f9a14ca57176ebeeb2ae018c40f46352e30112a8a691a7d6d8f38bf3879", size = 33798, upload-time = "2026-08-26T05:58:10.403Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f4/b6/3f5f6d01337f4323dfdcec6220a6b3bf09e9834a29b225cdf6a3504812fe/wavespeed-2.0.4.tar.gz", hash = "sha256:5db5d14dd0229a4316ea6140f2e1da45a54354b980a19c2dfc0744d5ee4637e8", size = 34991, upload-time = "2026-10-17T09:34:30.498Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c3/9b/2c992f372794bc6d3c1084704af79f15de502c3a272f64b021cc3bdf48f6/wavespeed-2.0.2-py3-none-any.whl", hash = "sha256:5a6d5dd35b3a88302f6ee468276475478ac3ba883930a9e3563571732b38cf1e", size = 17379, upload-time = "2026-08-26T05:58:09.095Z" },
+    { url = "https://files.pythonhosted.org/packages/49/dc/0e048449af3ab15abced56fc977b25672ab6a82ae5e0072243aa94615462/wavespeed-2.0.4-py3-none-any.whl", hash = "sha256:0e9f33a0d5a9643de75bfa1839bc26fb1dced3b177290ebdad317c394eaf17ad", size = 17610, upload-time = "2026-10-17T09:34:29.278Z" },
 ]
 
 [[package]]

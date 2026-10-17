@@ -310,3 +310,34 @@ def test_update_build_config_ignores_other_fields(monkeypatch):
     updated = make_image().update_build_config(build_config, "", "prompt")
 
     assert updated["model_name"]["options"] == ["kept"]
+
+
+@pytest.mark.parametrize(
+    "message",
+    [
+        "Failed to submit prediction: HTTP 503: unavailable",
+        "Prediction submission did not return a response. The task may already "
+        "have been created, so the SDK will not retry the POST automatically.",
+    ],
+)
+def test_ambiguous_submit_failure_tells_user_not_to_retry_blindly(fake_client, message):
+    fake_client["client"] = FakeClient(error=RuntimeError(message))
+
+    with pytest.raises(ValueError, match="do not retry blindly") as excinfo:
+        make_image().generate_image()
+    assert "check your recent predictions" in str(excinfo.value)
+
+
+@pytest.mark.parametrize(
+    "message",
+    [
+        "Failed to submit prediction: HTTP 401: bad key",
+        "Prediction failed (task_id: abc123): out of capacity",
+    ],
+)
+def test_definite_failures_get_no_retry_hint(fake_client, message):
+    fake_client["client"] = FakeClient(error=RuntimeError(message))
+
+    with pytest.raises(ValueError) as excinfo:
+        make_image().generate_image()
+    assert "retry blindly" not in str(excinfo.value)

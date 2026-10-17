@@ -39,7 +39,7 @@ classifiers = [
 # the live model-catalog dropdown.
 dependencies = [
     "lfx>=1.11.4,<2.0.0",
-    "wavespeed>=1.0.13",
+    "wavespeed>=2.0.4",
     "requests>=2.32.0",
 ]
 
