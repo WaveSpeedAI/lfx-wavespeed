@@ -1265,7 +1265,7 @@ wheels = [
 
 [[package]]
 name = "lfx-wavespeed"
-version = "0.1.2"
+version = "0.1.3"
 source = { editable = "." }
 dependencies = [
     { name = "lfx" },
@@ -1285,7 +1285,7 @@ test = [
 requires-dist = [
     { name = "lfx", specifier = ">=1.11.4,<2.0.0" },
     { name = "requests", specifier = ">=2.32.0" },
-    { name = "wavespeed", specifier = ">=2.0.4" },
+    { name = "wavespeed", specifier = ">=2.0.5" },
 ]
 
 [package.metadata.requires-dev]
@@ -3261,15 +3261,15 @@ wheels = [
 
 [[package]]
 name = "wavespeed"
-version = "2.0.4"
+version = "2.0.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "requests" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f4/b6/3f5f6d01337f4323dfdcec6220a6b3bf09e9834a29b225cdf6a3504812fe/wavespeed-2.0.4.tar.gz", hash = "sha256:5db5d14dd0229a4316ea6140f2e1da45a54354b980a19c2dfc0744d5ee4637e8", size = 34991, upload-time = "2026-10-17T09:34:30.498Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/1c/53/94031aaadc27c92380eac8e0544feb22779636ac52748b2268ab272097fe/wavespeed-2.0.5.tar.gz", hash = "sha256:fbc9d837bb570f5e72726c8ec269ab2dd0434e77fc32164f071bca4445207b4e", size = 37982, upload-time = "2026-10-17T11:02:34.443Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/49/dc/0e048449af3ab15abced56fc977b25672ab6a82ae5e0072243aa94615462/wavespeed-2.0.4-py3-none-any.whl", hash = "sha256:0e9f33a0d5a9643de75bfa1839bc26fb1dced3b177290ebdad317c394eaf17ad", size = 17610, upload-time = "2026-10-17T09:34:29.278Z" },
+    { url = "https://files.pythonhosted.org/packages/7d/d6/715b1f630bc3cba568d35a09e21d6de8652f81f7b1f44dc0554580b34423/wavespeed-2.0.5-py3-none-any.whl", hash = "sha256:8100cf99b121293d1a52135694c7a230a5cffebeff2cd774d24de1b353e8ebc4", size = 18596, upload-time = "2026-10-17T11:02:33.082Z" },
 ]
 
 [[package]]
