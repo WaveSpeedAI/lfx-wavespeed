@@ -24,9 +24,6 @@ WAVESPEED_MODELS_PATH = "/api/v3/models"
 #: can attribute traffic to the Langflow integration.
 CLIENT_NAME = "langflow"
 
-#: Wait deadline for a single generation.  ``None`` would wait forever and
-#: strand the flow; the task keeps running server-side either way.
-DEFAULT_TIMEOUT = 600.0
 DEFAULT_POLL_INTERVAL = 2.0
 
 #: How long to wait on the (fast, cacheable) model-catalog request.
@@ -177,9 +174,9 @@ class WaveSpeedBaseComponent(Component):
             result = client.run(
                 model_id,
                 payload,
-                # A blank field means "use the default deadline", not "wait
-                # forever" -- an unbounded wait would strand the whole flow.
-                timeout=getattr(self, "timeout", None) or DEFAULT_TIMEOUT,
+                # A blank/zero field means no explicit cap: the SDK default
+                # applies (tasks can legitimately run for hours).
+                timeout=getattr(self, "timeout", None) or None,
                 poll_interval=getattr(self, "poll_interval", None) or DEFAULT_POLL_INTERVAL,
             )
         except Exception as e:

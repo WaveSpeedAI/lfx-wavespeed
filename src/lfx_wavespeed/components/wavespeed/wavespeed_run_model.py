@@ -8,7 +8,7 @@ from typing import Any
 from lfx.io import FloatInput, MessageTextInput, MultilineInput, Output, SecretStrInput
 from lfx.schema.data import Data
 
-from lfx_wavespeed._base import DEFAULT_POLL_INTERVAL, DEFAULT_TIMEOUT, WaveSpeedBaseComponent
+from lfx_wavespeed._base import DEFAULT_POLL_INTERVAL, WaveSpeedBaseComponent
 
 EXAMPLE_MODEL = "wavespeed-ai/z-image/turbo"
 
@@ -54,8 +54,8 @@ class WaveSpeedRunModelComponent(WaveSpeedBaseComponent):
         FloatInput(
             name="timeout",
             display_name="Timeout (s)",
-            info="Maximum seconds to wait for the result. The task keeps running server-side.",
-            value=DEFAULT_TIMEOUT,
+            info="Optional max seconds to wait for the result; empty = wait until done.",
+            value=None,
             required=False,
             advanced=True,
         ),

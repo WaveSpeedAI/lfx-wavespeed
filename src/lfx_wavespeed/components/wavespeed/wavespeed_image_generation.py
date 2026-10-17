@@ -7,7 +7,7 @@ from typing import ClassVar
 from lfx.io import DropdownInput, FloatInput, MessageTextInput, Output, SecretStrInput
 from lfx.schema.data import Data
 
-from lfx_wavespeed._base import DEFAULT_POLL_INTERVAL, DEFAULT_TIMEOUT, WaveSpeedBaseComponent
+from lfx_wavespeed._base import DEFAULT_POLL_INTERVAL, WaveSpeedBaseComponent
 
 DEFAULT_IMAGE_MODEL = "bytedance/seedream-v5.0-pro"
 
@@ -81,8 +81,8 @@ class WaveSpeedImageGenerationComponent(WaveSpeedBaseComponent):
         FloatInput(
             name="timeout",
             display_name="Timeout (s)",
-            info="Maximum seconds to wait for the image. The task keeps running server-side.",
-            value=DEFAULT_TIMEOUT,
+            info="Optional max seconds to wait for the image; empty = wait until done.",
+            value=None,
             required=False,
             advanced=True,
         ),

@@ -7,7 +7,7 @@ from typing import ClassVar
 from lfx.io import DropdownInput, FloatInput, IntInput, MessageTextInput, Output, SecretStrInput
 from lfx.schema.data import Data
 
-from lfx_wavespeed._base import DEFAULT_POLL_INTERVAL, DEFAULT_TIMEOUT, WaveSpeedBaseComponent
+from lfx_wavespeed._base import DEFAULT_POLL_INTERVAL, WaveSpeedBaseComponent
 
 DEFAULT_VIDEO_MODEL = "wavespeed-ai/minimax-h3/text-to-video"
 
@@ -65,8 +65,8 @@ class WaveSpeedVideoGenerationComponent(WaveSpeedBaseComponent):
         FloatInput(
             name="timeout",
             display_name="Timeout (s)",
-            info="Maximum seconds to wait for the video. The task keeps running server-side.",
-            value=DEFAULT_TIMEOUT,
+            info="Optional max seconds to wait for the video; empty = wait until done.",
+            value=None,
             required=False,
             advanced=True,
         ),

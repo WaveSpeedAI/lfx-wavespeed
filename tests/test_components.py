@@ -341,3 +341,8 @@ def test_definite_failures_get_no_retry_hint(fake_client, message):
     with pytest.raises(ValueError) as excinfo:
         make_image().generate_image()
     assert "retry blindly" not in str(excinfo.value)
+
+
+def test_blank_timeout_means_no_explicit_cap(fake_client):
+    make_image(timeout=None).generate_image()
+    assert fake_client["client"].calls[0]["timeout"] is None
